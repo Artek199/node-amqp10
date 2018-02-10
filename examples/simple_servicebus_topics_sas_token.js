@@ -67,7 +67,7 @@ client.connect(uri)
     });
   })
   .then(function () {
-    return client.createReceiver(topicName + '/subscriptions/' + subscriptionName)
+    return client.createReceiver(topicName + '/subscriptions/' + subscriptionName);
   })
   .then(function(receiver) {
     // error handling
