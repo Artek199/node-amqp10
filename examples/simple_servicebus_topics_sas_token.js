@@ -13,9 +13,10 @@
 
 'use strict';
 //var AMQPClient = require('amqp10').Client;
-var AMQPClient  = require('../lib').Client,
-    Policy = require('../lib').Policy,
-    DescribedType = require('../lib/types/described_type');
+var amqp10 = require('../lib'),
+    AMQPClient = amqp10.Client,
+    Policy = amqp10.Policy,
+    DescribedType = amqp10.DescribedType;
 
 var settingsFile = process.argv[2];
 var settings = {};
@@ -50,7 +51,7 @@ var client = new AMQPClient(Policy.ServiceBusTopic);
 
 client.connect(uri)
   .then(function() {
-    return client.createSender('$cbs');
+    return client.createSender('$cbs', {'encoder':null});
   })
   .then(function(cbsSender) {
     var request = {
